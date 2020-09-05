@@ -1,0 +1,6 @@
+<h1>Все посты </h1>
+<% @posts.each do |post|%>
+  <h3><%= post.name %></h3>
+  <p><%= post.category.name %></p>
+  <p><%= post.desc %></p>
+<% end %>

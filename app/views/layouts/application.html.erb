@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Engie</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+  <body>
+    <header>
+      <nav class="navbar navbar-expand-md navbar-light bg-none">
+        <%= link_to home_path do %> <img class="logo" src="/engie_logo.png"><%end%>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+          <div class="navbar-nav">
+            <%= link_to new_post_path, class:"btn navbar-btn" do %> <span class="nav-link" >New post </span><%end%>
+            <%= link_to home_path, class:"btn navbar-btn" do %> <span class="nav-link" >Home </span><%end%>
+            <%= link_to posts_path, class:"btn navbar-btn" do %> <span class="nav-link" >Posts </span><%end%>
+          </div>
+        </div>
+        <div class="container index-form">
+          <% if user_signed_in? %>
+            <div class="greetings"><span><label for='exit'>Здравствуйте, <%= current_user.email %></label></span><br>
+              <%= link_to 'Выйти', destroy_user_session_path, :method => :delete, class:'exit-btn index-btn', name: 'exit'%>
+            </div>
+          <% else %>
+            <div class="enter">
+              <%= link_to 'Войти', new_user_session_path, class:"log-in-btn index-btn" %> или <%= link_to 'Зарегистрироваться', new_user_registration_path, class:" register-btn index-btn" %>
+            </div>
+          <% end %>
+        </div>
+      </nav>
+    </header>
+    <div class="container main">
+      <%= yield %>
+    </div>
+    <footer class="page-footer">
+      <div class="container">
+        <div class='clearfix'>
+          <nav class="footer-nav navbar-expand-md navbar-light bg-none">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+              <div class="navbar-nav">
+                <%= link_to new_post_path, class:"btn footer-navbar-btn" do %> <span class="footer-nav-link" >New post </span><%end%>
+                <%= link_to home_path, class:"btn footer-navbar-btn" do %> <span class="footer-nav-link" >Home </span><%end%>
+                <%= link_to posts_path, class:"btn footer-navbar-btn" do %> <span class="footer-nav-link" >Posts </span><%end%>
+              </div>
+            </div>
+          </nav>
+        </div>
+        <div class='clearfix'>
+          <div class='social-networks'>
+            <a class='socnet-btn btn social-network' href="#">Инстаграм</a>
+            <a class='socnet-btn btn social-network' href="#">Фейсбук</a>
+            <a class='socnet-btn btn social-network' href="#">Вконтакте</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>

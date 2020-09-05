@@ -1,0 +1,26 @@
+<h2>Новый пост</h2>
+<%= form_for :post, url: posts_path do |f|%>
+  <div class="post-form">
+    <p>
+      Название и тип станка<br>
+      <div class="new-name">
+        <%= f.text_field :name %><br>
+      </div>
+      <div class="new-category">
+        <%= f.select :category_id, Category.all.collect{|p| [p.name,p.id]} %>
+      </div>
+    </p>
+    <p>
+      Текст статьи<br>
+      <div class="new-text">
+        <%= f.text_area :desc, class: "new-text" %><br>
+      </div>
+      <div class="new-character">
+        <%= f.text_field :character %>
+      </div>
+    </p>
+    <p>
+      <%= f.submit "Зберегти", class: "btn submit-btn"  %>
+    </p>
+  </div>
+<% end %>
